@@ -9,23 +9,26 @@ else {
   
 winston.loggers.add('info', {
     console: {
+      level: winston.level,
       colorize: true,
       label: 'category one'
     },
     file: {
-            colorize: 'true',
-            filename: __dirname + '/../logs/info/info.log',
-            datePattern: '.yyyy-MM-dd',
-            //maxsize: 20000,
-            json: false
+        level: winston.level,
+        colorize: 'true',
+        filename: __dirname + '/../logs/info/info.log',
+        datePattern: '.yyyy-MM-dd',
+        //maxsize: 20000,
+        json: false
         
     },
     DailyRotateFile: {
+        level: winston.level,
         colorize: 'true',
-            filename: __dirname + '/../logs/info/info.log',
-            datePattern: '.yyyy-MM-dd',
-            //maxsize: 20000,
-            json: false
+        filename: __dirname + '/../logs/info/info.log',
+        datePattern: '.yyyy-MM-dd',
+        //maxsize: 20000,
+        json: false
     }
 });
 /*
