@@ -2,20 +2,36 @@ var winston = require("winston");
 
 winston.loggers.add('info', {
     console: {
+      level: winston.level,
       colorize: true,
       label: 'category one'
     },
-    /*file: {
-            colorize: 'true',
-            filename: __dirname + '/../logs/info/info.log',
-            datePattern: '.yyyy-MM-dd',
-            //maxsize: 20000,
-            json: false
-        
-    },*/
-    DailyRotateFile: {
+
+
+
+
+
+
+
+
+    file: {
+        level: winston.level,
         colorize: 'true',
-        filename: __dirname + '/../logs/development/info.log',
+        filename: __dirname + '/../logs/info/info.log',
+        datePattern: '.yyyy-MM-dd',
+        //maxsize: 20000,
+        json: false
+
+        
+    },
+    DailyRotateFile: {
+        level: winston.level,
+        colorize: 'true',
+
+
+
+
+
         datePattern: '.yyyy-MM-dd',
         //maxsize: 20000,
         json: false
@@ -33,16 +49,20 @@ winston.loggers.add('error', {
 });*/
 
 
-if(process.env == 'production') {
-    winston.setLevels('info');
-}
-else {
-    winston.setLevels('debug');
-}
-
-var logger = winston.loggers.get('info');
 
 
-logger.info("[Testi]" + process.env);
+
+
+
+
+
+
+
+
+
+
 
 module.exports = logger;
+
+module.exports = winston.loggers.get('info');
+
