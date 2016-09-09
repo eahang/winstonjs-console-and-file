@@ -1,31 +1,24 @@
 var winston = require("winston");
 
-if(process.env == 'production') {
-    winston.level = 'info';
-}
-else {
-    winston.level = 'debug';
-}
-  
 winston.loggers.add('info', {
     console: {
       colorize: true,
       label: 'category one'
     },
-    file: {
+    /*file: {
             colorize: 'true',
             filename: __dirname + '/../logs/info/info.log',
             datePattern: '.yyyy-MM-dd',
             //maxsize: 20000,
             json: false
         
-    },
+    },*/
     DailyRotateFile: {
         colorize: 'true',
-            filename: __dirname + '/../logs/info/info.log',
-            datePattern: '.yyyy-MM-dd',
-            //maxsize: 20000,
-            json: false
+        filename: __dirname + '/../logs/development/info.log',
+        datePattern: '.yyyy-MM-dd',
+        //maxsize: 20000,
+        json: false
     }
 });
 /*
@@ -40,4 +33,16 @@ winston.loggers.add('error', {
 });*/
 
 
-module.exports = winston.loggers.get('info');
+if(process.env == 'production') {
+    winston.setLevels('info');
+}
+else {
+    winston.setLevels('debug');
+}
+
+var logger = winston.loggers.get('info');
+
+
+logger.info("[Testi]" + process.env);
+
+module.exports = logger;
